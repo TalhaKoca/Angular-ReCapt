@@ -1,0 +1,18 @@
+<div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table *ngIf="dataLoaded==true" class="table">
+  <thead>
+    <tr  class="table-danger">
+      <th scope="col">Number ID</th>
+      <th>Marka Seçenekleri</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let brand of brands">
+      <th scope="row">{{brand.brandId}}</th>
+      <th scope = "row">{{brand.brandName}}</th>
+    </tr>
+  </tbody>
+
+</table>

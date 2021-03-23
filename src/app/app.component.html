@@ -1,0 +1,34 @@
+<!-- Welcome {{user}}
+{{car1.description}}
+
+<ul>
+  <li *ngFor="let car of cars">
+    {{car.description}}
+  </li>
+</ul> -->
+<div class="container">
+  <app-navi></app-navi><br>
+  
+  <div class="row">
+    <div class="col-md-4">
+      <app-brand></app-brand>
+    </div>
+    <div class="col-md-8">
+      <app-car></app-car>
+    </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <app-color></app-color>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-md-4">
+    <app-customer></app-customer>
+  </div>
+    <div class="col-md-8">
+      <app-rental></app-rental>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
