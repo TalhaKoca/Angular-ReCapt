@@ -1,18 +1,24 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<table *ngIf="dataLoaded==true" class="table">
+<table bgcolor="#8CBBC8" *ngIf="dataLoaded==true" class="table table-hover">
   <thead>
-    <tr  class="table-danger">
+    <tr class="table-dark">
       <th scope="col">Number ID</th>
       <th>Marka Seçenekleri</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let brand of brands">
-      <th scope="row">{{brand.brandId}}</th>
-      <th scope = "row">{{brand.brandName}}</th>
+    <tr [class]="getAllBrandClass()" routerLink="/cars">
+      <th colspan="2" style="text-align: center;">Araçları Getir</th>
     </tr>
-  </tbody>
+    <tr (click)="setCurrentBrand(brand)" routerLink="/cars/brand/{{brand.brandId}}" 
+    *ngFor="let brand of brands"
+      [class]="getCurrentBrandClass(brand)">
 
+      <th scope="row">{{brand.brandId}}</th>
+      <th scope="row">{{brand.brandName}}</th>
+    </tr>
+    <h5 *ngIf="currentBrand">{{currentBrand.brandId}} seçtiniz</h5>
+  </tbody>
 </table>

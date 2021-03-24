@@ -4,16 +4,18 @@
 <table *ngIf="dataLoaded==true" class="table">
   <thead>
     <tr class="table-danger">
-      <th scope="col">Markalar</th>
+      <th scope="col">Araç Markası</th>
       <th scope="col">Araç Rengi</th>
-      <th scope="col">Fiyat</th>
+      <th style="text-align: center;" scope="col">
+        Günlük Ücret
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let car of cars">
       <th scope="row">{{car.description}}</th>
       <th scope="row">{{car.colorName}}</th>
-      <th scope="row">{{car.dailyPrice}}</th>
+      <th style="text-align: center;" scope="row">{{car.dailyPrice}}</th>
     </tr>
   </tbody>
 </table>

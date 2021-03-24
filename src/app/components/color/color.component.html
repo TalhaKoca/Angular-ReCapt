@@ -1,18 +1,24 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<table *ngIf="dataLoaded==true" class="table">
-<thead>
-  <tr class="table-danger">
-    <th>Renk Kodu</th>
-    <th scope="col">Renkler </th>
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let color of colors">
-    <th scope="row">{{color.colorId}}</th>
-    <th scope="row">{{color.colorName}}</th>
-  </tr>
-</tbody>
+<table bgcolor="#8CBBC8" *ngIf="dataLoaded==true" class="table table-hover">
+  <thead>
+    <tr class="table-dark">
+      <th>Renk Kodu</th>
+      <th style="width: 100px;" scope="col">Renkler </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr [class]="getAllColorClass()" routerLink="/cars">
+      <th colspan="2" style="text-align: center;" >Renk Kataloğu</th>
+    </tr>
+    <tr (click)="setCurrentColor(color)" routerLink="/cars/color/{{color.colorId}}" 
+    *ngFor="let color of colors"
+    [class] = "getCurrentColorClass(color)">
+      <th style="width: 90px;;" scope="row">{{color.colorId}}</th>
+      <th scope="row">{{color.colorName}}</th>
+    </tr>
+    <h5 *ngIf="currentColor">{{currentColor.colorId}} seçtiniz</h5>
+  </tbody>
 
 </table>
