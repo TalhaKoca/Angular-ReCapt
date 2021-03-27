@@ -1,21 +1,63 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
+<div *ngIf="dataLoaded == false" class="spinner-border text-primary" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<table *ngIf="dataLoaded==true" class="table">
-  <thead>
-    <tr class="table-danger">
-      <th scope="col">Araç Markası</th>
-      <th scope="col">Araç Rengi</th>
-      <th style="text-align: center;" scope="col">
-        Günlük Ücret
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let car of cars">
-      <th scope="row">{{car.description}}</th>
-      <th scope="row">{{car.colorName}}</th>
-      <th style="text-align: center;" scope="row">{{car.dailyPrice}}</th>
-    </tr>
-  </tbody>
-</table>
+
+<li (click)="setCurrentAllCar()" [class]="getCurrentAllCarClass()" routerLink="/cars"
+  class="p-3 mb-2 bg-dark bg-gradient text-white" aria-current="true">
+  Cars List
+</li>
+<div class="row">
+
+  <div class="col-md-4" style="background: rgb(173, 30, 30); height: auto;">
+    <label for="cars"><strong>Brands :&nbsp;&nbsp;</strong></label>
+    <select style="height: auto;" class="from-select">
+      <option *ngFor="let car of cars">{{car.brandName}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-4" style="background: rgb(173, 30, 30); height: auto;">
+    <label for="cars" style="height: auto;"><strong>Colors :&nbsp;&nbsp;</strong></label>
+    <select class="from-select">
+      <option *ngFor="let car of cars">{{car.colorName}}</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <!-- *ngFor="let car of cars" (click)="setSelectedBrandIdColorId()" [class]="getSelectedBrandIdColorId(car.brandId,car.colorId)" routerLink="/cars/{{car.brandId}}/{{car.colorId}}" -->
+    <button class="btn-success" style="background: rgb(88, 85, 76);">
+      Filter</button>
+  </div>
+</div><br>
+
+<div class="row" *ngIf="cars.length == 0">
+  <div class="col-md-12">
+    <div class="alert alert-danger">
+      Car is not found to show.
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="dataLoaded==true">
+  <div class="col-md-4" *ngFor="let car of cars">
+    <!-- | carFilte r:carFilterText -->
+    <div class="card">
+      <div>
+        <img [src]="car.images.length !== 0 ? imageBasePath + car.images[0] : imageBasePath + defaultlogo"
+          class="card-img-top" width="auto" height="150px">
+      </div>
+      <div class="card-body" style="background-color:ghostwhite;">
+        <h5 class="card-title"> <b> {{car.brandName}} - {{car.modelYear}} </b></h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"> <b>Color:</b> {{car.colorName |uppercase}}</li>
+        <li class="list-group-item text-center" style="color:#000000;">
+          <b>{{car.dailyPrice}} ₺ </b></li>
+
+        <li class="list-group-item text-center"> <button routerLink="/cars/cardetail/{{car.carId}}" type="button"
+            class="btn btn-dark w-100"><strong>Detay</strong></button>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</div>

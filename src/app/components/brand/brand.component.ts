@@ -26,7 +26,13 @@ export class BrandComponent implements OnInit {
   }
   setCurrentBrand(brand: Brand) {
     this.currentBrand = brand;
+    console.log(this.currentBrand)
   }
+
+  removeCurrentBrand(){
+    this.currentBrand = {brandId:0,brandName:""};
+  }
+
   getCurrentBrandClass(brand: Brand) {
     if (brand == this.currentBrand) {
       return 'table table-dark'

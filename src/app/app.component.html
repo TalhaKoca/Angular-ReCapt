@@ -8,27 +8,26 @@
 </ul> -->
 <div class="container">
   <app-navi></app-navi><br>
-  
+
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3 d-flex flex-column mx-auto">
       <app-brand></app-brand>
+      <app-color></app-color>
     </div>
     <div class="col-md-8">
       <router-outlet></router-outlet>
     </div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <app-color></app-color>
+    <div class="row">
+
     </div>
-  </div>
-  <div class="row">
-  <div class="col-md-4">
-    <app-customer></app-customer>
-  </div>
-    <div class="col-md-8">
-      <app-rental></app-rental>
+    <div class="row">
+      <div class="col-md-4">
+        <app-customer></app-customer>
+      </div>
+      <div class="col-md-8">
+        <app-rental></app-rental>
+      </div>
     </div>
+
   </div>
-  
-</div>

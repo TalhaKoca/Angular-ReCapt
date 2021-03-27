@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr [class]="getAllBrandClass()" routerLink="/cars">
+    <tr [class]="getAllBrandClass()" routerLink="/cars">      
       <th colspan="2" style="text-align: center;">Araçları Getir</th>
     </tr>
     <tr (click)="setCurrentBrand(brand)" routerLink="/cars/brand/{{brand.brandId}}" 

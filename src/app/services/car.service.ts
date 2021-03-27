@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NumberValueAccessor } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CarDetails } from '../models/carDetail';
 import { listResponseModel } from '../models/listResponseModel';
@@ -27,8 +26,9 @@ export class CarService {
     let newPath=this.apiUrl + "cars/getcardetailsbycolorid?colorId="+colorId
     return this.httpClient.get<listResponseModel<CarDetails>>(newPath);
   }
+
+  getCarDetailsByCarId(carId:number):Observable<listResponseModel<CarDetails>>{
+    let newPath = this.apiUrl + "cars/getcardetailsbycarid?carId=" + carId;
+    return this.httpClient.get<listResponseModel<CarDetails>>(newPath);
+  }
 }
-//getCars() {
-//this.httpClient.get<CarResponseModel>(this.apiUrl).subscribe((response) => {
-//this.cars = response.data;
-//});

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarDetails } from 'src/app/models/carDetail';
+import { CarImage } from 'src/app/models/carImage';
+import { listResponseModel } from 'src/app/models/listResponseModel';
+import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-car',
@@ -12,14 +16,19 @@ export class CarComponent implements OnInit {
   cars: CarDetails[] = [];
   dataLoaded = false;
 
-  // carResponseModel:CarResponseModel={
-  //   data:this.cars,
-  //   message:"",
-  //   success:true
-  // };
+  imageBasePath = environment.baseUrl;
+  defaultlogo = "/uploads/defaultlogo.jpg"
+
+  currentCar: CarDetails;
+  default: CarDetails;
+  carImage:CarImage;
+  carImages:CarImage[]=[];
+
   constructor(
     private carService: CarService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private carImageService:CarImageService,
+
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +41,17 @@ export class CarComponent implements OnInit {
       } 
       else {
         this.getCars();
+        this.getCarImages();
       }
+    });
+  }
+
+  getCarImages() {
+
+    this.carImageService.getCarImages().subscribe((response) => {
+      this.carImages = response.data;
+      this.dataLoaded = true;
+      
     });
   }
 
@@ -40,6 +59,7 @@ export class CarComponent implements OnInit {
     this.carService.getCars().subscribe((response) => {
       this.cars = response.data;
       this.dataLoaded = true;
+    
     });
   }
 
@@ -56,4 +76,28 @@ export class CarComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
+
+  setCurrentAllCar() {
+    this.currentCar = this.default;
+  }
+
+  getCurrentAllCarClass() {
+    if (this.currentCar == this.default) {
+      return 'list-group-item active';
+    } else {
+      return 'list-group-item';
+    }
+  }
+
+  getCarImageByCarId(carId:number){
+    this.carImageService.getCarImagesByCarId(carId).subscribe(response=>{
+      this.carImage= response.data[0];
+    })
+
+  }
 }
+// carResponseModel:CarResponseModel={
+  //   data:this.cars,
+  //   message:"",
+  //   success:true
+  // };
