@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CarDetails } from 'src/app/models/carDetail';
 import { CarImage } from 'src/app/models/carImage';
 import { CarImageService } from 'src/app/services/car-image.service';
@@ -11,19 +12,17 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car-details.component.css'],
 })
 export class CarDetailsComponent implements OnInit {
-  
   carDetails: CarDetails[] = [];
-  cardetails : CarDetails;
-  
-  carImages:CarImage[]=[];
-  currentImage:CarImage;
-  
+  carImages: CarImage[] = [];
+  currentImage: CarImage;
+
   dataLoaded = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private carImageService:CarImageService,
-    private carService : CarService
+    private carImageService: CarImageService,
+    private carService: CarService,
+    private toastrService:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +36,7 @@ export class CarDetailsComponent implements OnInit {
 
   getCarDetailsByCarId(carId: number) {
     this.carService.getCarDetailsByCarId(carId).subscribe((response) => {
-      this.cardetails = response.data[0];
+      this.carDetails = response.data;
       this.dataLoaded = true;
     });
   }
@@ -49,11 +48,17 @@ export class CarDetailsComponent implements OnInit {
     });
   }
 
-  getSliderClassName(carImage:CarImage){
-    if(this.currentImage ==carImage){
-      return "carousel-item active"
-    }else{
-      return "carousel-item"
+  getSliderClassName(carImage: CarImage) {
+    if (this.currentImage == carImage) {
+      return 'carousel-item active';
+    } else {
+      return 'carousel-item';
     }
+  }
+
+  addToCart(carDetail:CarDetails){
+    this.toastrService.success("Araç Kiralandı",carDetail.brandName)
+  }
 }
-}
+//cardetails : CarDetails;
+//console.log(this.cardetails) undefined

@@ -1,7 +1,7 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<table bgcolor="#8CBBC8" *ngIf="dataLoaded==true" class="table table-hover">
+<table style="background-color: rgb(138, 65, 65);" *ngIf="dataLoaded==true" class="table table-hover">
   <thead>
     <tr class="table-dark">
       <th>Renk Kodu</th>
@@ -18,7 +18,6 @@
       <th style="width: 90px;;" scope="row">{{color.colorId}}</th>
       <th scope="row">{{color.colorName}}</th>
     </tr>
-    <h5 *ngIf="currentColor">{{currentColor.colorId}} seçtiniz</h5>
   </tbody>
 
 </table>

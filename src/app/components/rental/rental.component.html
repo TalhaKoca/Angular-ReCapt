@@ -3,21 +3,45 @@
 </div>
 <table *ngIf="dataLoaded==true" class="table">
   <thead>
-    <tr class="table-danger">
-      <th scope="col">Rental ID</th>
-      <th scope="col">Araç ID</th>
-      <th scope="col">Müşteri ID</th>
+    <tr class="table" style="background-color: rgb(126, 82, 82)">
+      <th scope="col">Marka</th>
+      <th scope="col">Model</th>
+      <th scope="col">Üretim Yılı</th>
       <th scope="col">Kiralama Tarihi</th>
       <th scope="col">Teslim Ediliş Tarihi</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let rental of rentals">
-      <th scope="row">{{rental.rentalId}}</th>
-      <th scope="row">{{rental.carId}}</th>
-      <th scope="row">{{rental.customerId}}</th>
+    <tr *ngFor="let rental of rentalDetails">
+      <th scope="row">{{rental.brandName}}</th>
+      <th scope="row">{{rental.description}}</th>
+      <th scope="row">{{rental.modelYear}}</th>
       <th scope="row">{{rental.rentDate}}</th>
       <th scope="row">{{rental.returnDate}}</th>
+
     </tr>
   </tbody>
 </table>
+
+<li *ngIf="rentItems" class="nav-item dropdown">
+  <!-- tanımlıysa anlamına gelir -->
+  <a
+    class="nav-link dropdown-toggle"
+    href="#"
+    id="navbarDropdown"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Araç Listesi
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li *ngFor="let rentItem of rentItems">
+      <a class="dropdown-item">{{ rentItem.carId.carId }}</a>
+    </li>
+    <li>
+      <hr class="dropdown-divider" />
+    </li>
+    <li><a class="dropdown-item">Kiralanan Araçlar</a></li>
+  </ul>
+</li>

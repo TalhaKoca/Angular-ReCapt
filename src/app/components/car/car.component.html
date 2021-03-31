@@ -1,63 +1,131 @@
-<div *ngIf="dataLoaded == false" class="spinner-border text-primary" role="status">
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<li (click)="setCurrentAllCar()" [class]="getCurrentAllCarClass()" routerLink="/cars"
-  class="p-3 mb-2 bg-dark bg-gradient text-white" aria-current="true">
-  Cars List
-</li>
-<div class="row">
-
-  <div class="col-md-4" style="background: rgb(173, 30, 30); height: auto;">
-    <label for="cars"><strong>Brands :&nbsp;&nbsp;</strong></label>
-    <select style="height: auto;" class="from-select">
-      <option *ngFor="let car of cars">{{car.brandName}}</option>
-    </select>
-  </div>
-
-  <div class="col-md-4" style="background: rgb(173, 30, 30); height: auto;">
-    <label for="cars" style="height: auto;"><strong>Colors :&nbsp;&nbsp;</strong></label>
-    <select class="from-select">
-      <option *ngFor="let car of cars">{{car.colorName}}</option>
-    </select>
-  </div>
-  <div class="col-md-4">
-    <!-- *ngFor="let car of cars" (click)="setSelectedBrandIdColorId()" [class]="getSelectedBrandIdColorId(car.brandId,car.colorId)" routerLink="/cars/{{car.brandId}}/{{car.colorId}}" -->
-    <button class="btn-success" style="background: rgb(88, 85, 76);">
-      Filter</button>
-  </div>
-</div><br>
-
-<div class="row" *ngIf="cars.length == 0">
-  <div class="col-md-12">
-    <div class="alert alert-danger">
-      Car is not found to show.
-    </div>
-  </div>
+<div class="row m-2">
+  <li class="p-3 mb-2 bg-dark bg-gradient text-white" aria-current="true">
+    Araç Listesi
+  </li>
 </div>
-
-<div class="row" *ngIf="dataLoaded==true">
-  <div class="col-md-4" *ngFor="let car of cars">
-    <!-- | carFilte r:carFilterText -->
-    <div class="card">
-      <div>
-        <img [src]="car.images.length !== 0 ? imageBasePath + car.images[0] : imageBasePath + defaultlogo"
-          class="card-img-top" width="auto" height="150px">
-      </div>
-      <div class="card-body" style="background-color:ghostwhite;">
-        <h5 class="card-title"> <b> {{car.brandName}} - {{car.modelYear}} </b></h5>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"> <b>Color:</b> {{car.colorName |uppercase}}</li>
-        <li class="list-group-item text-center" style="color:#000000;">
-          <b>{{car.dailyPrice}} ₺ </b></li>
-
-        <li class="list-group-item text-center"> <button routerLink="/cars/cardetail/{{car.carId}}" type="button"
-            class="btn btn-dark w-100"><strong>Detay</strong></button>
-        </li>
-
-      </ul>
+<div class="row m-2">
+  <div class="row m-2">
+    <div class="col col-4">
+      <select
+        [(ngModel)]="brandFilter"
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option
+          *ngFor="let brand of brands"
+          [value]="brand.brandId"
+          [selected]="getSelectedBrand(brand.brandId)"
+        >
+          {{ brand.brandName }}
+        </option>
+      </select>
     </div>
 
+    <div class="col col-4">
+      <select
+        [(ngModel)]="colorFilter"
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option
+          *ngFor="let color of colors"
+          [value]="color.colorId"
+          [selected]="getSelectedColor(color.colorId)"
+        >
+          {{ color.colorName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col col-3">
+      <a
+        routerLink="/cars/brand/{{ brandFilter }}/color/{{ colorFilter }}"
+        class="btn btn-sm"
+        style="background: rgb(157, 161, 101)"
+        >Filtrele</a
+      >
+      ||
+      <button
+        routerLink="/cars"
+        class="btn btn-sm"
+        style="background: rgb(157, 161, 101)"
+      >
+        Filtre Kaldır
+      </button>
+    </div>
   </div>
+
+  <div class="col-md-3 d-flex flex-column mx-auto">
+    <label for="filterText" class="form-label"></label>
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterText"
+      placeholder="Ara..."
+    />
+  </div>
+
+  <br />
+
+  <div class="row" *ngIf="cars.length == 0">
+    <div class="col-md-12">
+      <div class="alert alert-danger">Car is not found to show.</div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="dataLoaded == true">
+    <div *ngFor="let car of cars | filterPipe: filterText" class="col-md-4">
+      <div class="card">
+        <div>
+          <img
+            [src]="
+              car.images.length !== 0
+                ? imageBasePath + car.images[0]
+                : imageBasePath + defaultlogo
+            "
+            class="card-img-top"
+            width="auto"
+            height="150px"
+          />
+        </div>
+
+        <div class="card-body" style="background-color: ghostwhite">
+          <h5 class="card-title">
+            <b> {{ car.brandName | uppercase }} - {{ car.modelYear }} </b>
+          </h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <b>Color:</b> {{ car.colorName | uppercase }}
+          </li>
+          <li class="list-group-item text-center" style="color: #000000">
+            <b>{{ car.dailyPrice | vatAdded: 10 }} ₺ </b><br />
+            <b>Fiyatlarımıza KDV dahildir</b>
+          </li>
+
+          <li class="list-group-item text-center">
+            <button
+              routerLink="/cars/cardetail/{{ car.carId }}"
+              type="button"
+              class="btn btn-dark w-100"
+            >
+              <strong>Detay</strong>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- <button class="btn btn-sm" style="background: rgb(180, 177, 177)">
+  Filtre Uygula
+</button> -->
 </div>

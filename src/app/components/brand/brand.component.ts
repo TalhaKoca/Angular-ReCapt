@@ -29,9 +29,6 @@ export class BrandComponent implements OnInit {
     console.log(this.currentBrand)
   }
 
-  removeCurrentBrand(){
-    this.currentBrand = {brandId:0,brandName:""};
-  }
 
   getCurrentBrandClass(brand: Brand) {
     if (brand == this.currentBrand) {

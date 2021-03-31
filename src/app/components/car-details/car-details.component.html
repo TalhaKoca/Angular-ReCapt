@@ -47,20 +47,36 @@
 
 <div class="row">
   <div class="col-md-8">
-    <div id="carouselExampleIndicators" class="carousel carousel-fade slide carousel-dark" data-bs-ride="carousel">
+    <div
+      id="carouselExampleIndicators"
+      class="carousel carousel-fade slide carousel-dark"
+      data-bs-ride="carousel"
+    >
       <div class="carousel-inner">
         <div *ngFor="let carimageUrl of carImages">
-          <img class="rounded float-start" src="https://localhost:44378{{ carimageUrl.imagePath }}"
-            class="d-block w-100" height="380" />
+          <img
+            class="rounded float-start"
+            src="https://localhost:44378{{ carimageUrl.imagePath }}"
+            class="d-block w-100"
+            height="380"
+          />
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev">
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next">
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
@@ -68,29 +84,34 @@
     </div>
   </div>
 
-  <div  class="col-md-4"><br>
+  <div *ngFor="let cardetail of carDetails" class="col-md-4">
+    <br />
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">
-          <strong> {{ cardetails.brandName}}</strong>
+          <strong> {{ cardetail.brandName }}</strong>
         </h5>
-        <p class="card-text">{{ cardetails.description }}</p>
+        <p class="card-text">{{ cardetail.description }}</p>
       </div>
 
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Brand : {{ cardetails.brandName }}</li>
-        <li class="list-group-item">Color : {{ cardetails.colorName }}</li>
-        <li class="list-group-item">Model Year : {{ cardetails.modelYear }}</li>
+        <li class="list-group-item">Brand : {{ cardetail.brandName }}</li>
+        <li class="list-group-item">Color : {{ cardetail.colorName }}</li>
+        <li class="list-group-item">Model Year : {{ cardetail.modelYear }}</li>
 
         <li class="list-group-item">
-          Daily Price : <del><strong style="color:#808080;">{{ cardetails.dailyPrice}}₺</strong></del>
+          Daily Price :
+          <del
+            ><strong style="color: #808080"
+              >{{ cardetail.dailyPrice }}₺</strong
+            ></del
+          >
         </li>
       </ul>
 
       <div class="card-body">
-        <button type="button" class="btn btn-primary">Kirala</button>
+        <button (click)="addToCart(cardetail)" type="button" class="btn btn-dark">Kirala</button>
       </div>
     </div>
   </div>
-  
 </div>

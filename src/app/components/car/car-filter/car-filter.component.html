@@ -1,0 +1,38 @@
+<div class="mb-3">
+    <select class="form-control rounded-0" [(ngModel)]="brandFilter">
+       <option value="0">- - Marka Seçiniz - -</option>
+ 
+       <option *ngFor="let brand of brands" value="{{ brand.brandId }}">
+          {{ brand.brandName }}
+       </option>
+    </select>
+ </div>
+ 
+ <div class="mb-3">
+    <select class="form-control rounded-0" [(ngModel)]="colorFilter">
+       <option value="0">- - Renk Seçiniz - -</option>
+ 
+       <option *ngFor="let color of colors" value="{{ color.colorId }}">
+          {{ color.colorName }}
+       </option>
+    </select>
+ </div>
+ 
+ <div class="row" *ngIf="brandFilter > 0 || colorFilter > 0">
+    <div class="col-lg mb-3 mb-lg-0">
+       <div class="d-grid">
+          <button class="btn btn-outline-primary"
+                  routerLink="/cars" (click)="clearFilter()">
+             <i class="bi-backspace me-1"></i> Temizle
+          </button>
+       </div>
+    </div>
+    <div class="col-lg">
+       <div class="d-grid">
+          <button class="btn btn-primary"
+                  routerLink="/cars/filter/{{ brandFilter }}/{{ colorFilter }}">
+             <i class="bi-search me-1"></i> Filtrele
+          </button>
+       </div>
+    </div>
+ </div>
