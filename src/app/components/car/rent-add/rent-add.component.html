@@ -1,0 +1,68 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card" style="font-family: sans-serif">
+      <div class="card-header" style="background-color: rgb(138, 74, 74)">
+        <h5 class="title">Araç Kiralama</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="addRentalForm" >
+          <div class="mb-3">
+            <label for="carId">Araç Id</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="carId"
+                formControlName="carId"
+                class="form-control"
+                placeholder="Araç Primary Key"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="customerId">Müşteri</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="customerId"
+                formControlName="customerId"
+                class="form-control"
+                placeholder="Müşteri Key"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="rentDate">Kiralama Tarihi</label>
+            <div class="form-group">
+              <input
+                type="datetime-local"
+                id="rentDate"
+                formControlName="rentDate"
+                class="form-control"
+                placeholder="Kiralama Tarihi"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="returnDate">Teslim Tarihi</label>
+            <div class="form-group">
+              <input
+                type="datetime-local"
+                id="returnDate"
+                formControlName="returnDate"
+                class="form-control"
+                placeholder="Teslim tarihi"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="rentFirstStage()">Kirala</button>
+      </div>
+    </div>
+  </div>
+</div>
+

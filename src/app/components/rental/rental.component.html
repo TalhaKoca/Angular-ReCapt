@@ -1,32 +1,7 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<table *ngIf="dataLoaded==true" class="table">
-  <thead>
-    <tr class="table" style="background-color: rgb(126, 82, 82)">
-      <th scope="col">Marka</th>
-      <th scope="col">Model</th>
-      <th scope="col">Üretim Yılı</th>
-      <th scope="col">Kiralama Tarihi</th>
-      <th scope="col">Teslim Ediliş Tarihi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let rental of rentalDetails">
-      <th scope="row">{{rental.brandName}}</th>
-      <th scope="row">{{rental.description}}</th>
-      <th scope="row">{{rental.modelYear}}</th>
-      <th scope="row">{{rental.rentDate}}</th>
-      <th scope="row">{{rental.returnDate}}</th>
-
-    </tr>
-  </tbody>
-</table>
-
-<li *ngIf="rentItems" class="nav-item dropdown">
+<li *ngIf="rentItems.length >= 0" class="nav-item dropdown">
   <!-- tanımlıysa anlamına gelir -->
   <a
-    class="nav-link dropdown-toggle"
+  class="btn btn-outline-light"
     href="#"
     id="navbarDropdown"
     role="button"
@@ -34,14 +9,20 @@
     aria-expanded="false"
   >
     Araç Listesi
-  </a>
+  </a>||
   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
     <li *ngFor="let rentItem of rentItems">
-      <a class="dropdown-item">{{ rentItem.carId.carId }}</a>
+      <a class="dropdown-item"
+        ><span class="badge rounded-pill bg-dark text-danger">{{
+          rentItem.price
+        }}</span
+        >{{ rentItem.carId.carId
+        }}<span (click)="removeFromList(rentItem.carId)" class="badge rounded-pill bg-danger text-dark">Sil</span></a
+      >
     </li>
     <li>
       <hr class="dropdown-divider" />
     </li>
-    <li><a class="dropdown-item">Kiralanan Araçlar</a></li>
+    <li><a class="dropdown-item">Rental Details</a></li>
   </ul>
 </li>

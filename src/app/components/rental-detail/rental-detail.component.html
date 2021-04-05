@@ -1,0 +1,29 @@
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-warning"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table *ngIf="dataLoaded == true" class="table">
+  <thead>
+    <tr class="table" style="background-color: rgb(126, 82, 82)">
+      <th scope="col">Marka</th>
+      <th scope="col">Model</th>
+      <th scope="col">Üretim Yılı</th>
+      <th scope="col">Kiralama Tarihi</th>
+      <th scope="col">Teslim Ediliş Tarihi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rental of rentalDetails">
+      <th scope="row">{{ rental.brandName }}</th>
+      <th scope="row">{{ rental.description }}</th>
+      <th scope="row">{{ rental.modelYear }}</th>
+      <th scope="row">{{ rental.rentDate }}</th>
+      <th scope="row">
+        <tr *ngIf="!rental.returnDate" scope="row">Araç teslimi yapılmadı.</tr>
+        <tr>{{ rental.returnDate }}</tr>
+    </tr>
+  </tbody>
+</table>

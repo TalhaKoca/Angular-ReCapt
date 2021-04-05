@@ -4,8 +4,8 @@ export interface RentalDetail{
     colorName:string;
     dailyPrice:number;
     modelYear:number;
-    rentDate:string;
-    returnDate:string;
+    rentDate:Date;
+    returnDate:Date;
     firstName:string;
     lastName:string;
     companyName:string;
