@@ -21,6 +21,11 @@ export class RentalService {
     return this.httpClient.post<ResponseModel>(newPath, rental);
   }
 
+  addDefault (rental:Rental):Observable<ResponseModel>{
+    let newPath = this.apiUrl + 'add';
+    return this.httpClient.post<ResponseModel>(newPath, rental);
+  }
+
   getRentals(): Observable<listResponseModel<Rental>> {
     let newPath = this.apiUrl + 'getall';
     return this.httpClient.get<listResponseModel<Rental>>(newPath);

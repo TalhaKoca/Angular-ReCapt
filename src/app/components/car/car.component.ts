@@ -66,7 +66,6 @@ export class CarComponent implements OnInit {
     this.carImageService.getCarImages().subscribe((response) => {
       this.carImages = response.data;
       this.dataLoaded = true;
-      console.log(this.carImages);
     });
   }
 
@@ -116,7 +115,6 @@ export class CarComponent implements OnInit {
       .getCarDetailsByBrandAndColorId(brandId, colorId)
       .subscribe((response) => {
         this.cars = response.data;
-        console.log(this.cars);
       });
   }
 

@@ -37,6 +37,7 @@ export class CarDetailsComponent implements OnInit {
   }
 
   getCarDetailsByCarId(carId: number) {
+    console.log(carId)
     this.carService.getCarDetailsByCarId(carId).subscribe((response) => {
       this.carDetails = response.data;
       this.dataLoaded = true;
@@ -47,12 +48,11 @@ export class CarDetailsComponent implements OnInit {
     this.carImageService.getCarImagesByCarId(carId).subscribe((response) => {
       this.carImages = response.data;
       this.dataLoaded = true;
-      console.log(this.carImages)
     });
   }
 
-  getSliderClassName(carImage: CarImage) {
-    if (this.currentImage == carImage) {
+  getSliderClassName(carImage: CarImage):string {
+    if (this.carImages[0] == carImage) {
       return 'carousel-item active';
     } else {
       return 'carousel-item';

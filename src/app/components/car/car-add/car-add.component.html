@@ -1,1 +1,108 @@
-<p>car-add works!</p>
+<div class="content">
+  <div class="col-md-8">
+    <div class="card" style="font-family: sans-serif">
+      <div class="card-header" style="background-color: rgb(17, 16, 16)">
+        <h5 class="title" style="color: floralwhite">
+          Araç Bilgi Giriş Ekranı
+        </h5>
+      </div>
+      <div class="card-body">
+        <form autocomplete="off" [formGroup]="addCarForm" (ngSubmit)="(addCar)">
+         
+          <div class="form-floating mb-3">
+            <select class="form-select" id="brands" formControlName="brandId">
+              <option value="">Markalar</option>
+              <option *ngFor="let brand of brands" [value]="brand.brandId">
+                {{ brand.brandName }}
+              </option>
+            </select>
+            <label for="brands">Markalar</label>
+          </div>
+            <!-- <div class="form-group">
+              <input
+                type="number"
+                id="brandId"
+                formControlName="brandId"
+                class="form-control"
+                placeholder="Marka Key"
+              />
+            </div> -->
+
+            <div class="form-floating mb-3">
+              <select class="form-select" id="colors" formControlName="colorId">
+                <option value="">Renk Seçenekleri</option>
+                <option *ngFor="let color of colors" [value]="color.colorId">
+                  {{ color.colorName }}
+                </option>
+              </select>
+              <label for="brands">Renkler</label>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+
+          <!-- <div class="mb-3">
+            <label for="colorId">Renk Kodu</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="colorId"
+                formControlName="colorId"
+                class="form-control"
+                placeholder="Renk Key"
+              />
+            </div>
+          </div> -->
+
+          <div class="mb-3">
+            <label for="description">Marka Serisi</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="description"
+                formControlName="description"
+                class="form-control"
+                placeholder="Marka Açıklaması"
+              />
+            </div>
+          </div>
+          <div class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+
+          <div class="mb-3">
+            <label for="modelYear">Üretim Yılı</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="modelYear"
+                formControlName="modelYear"
+                class="form-control"
+                placeholder="Üretim Tarihi"
+              />
+            </div>
+          </div>
+
+            <div class="mb-3">
+              <label for="dailyPrice">Kiralama Bedeli</label>
+              <div class="form-group">
+                <option value="dailyPrice"></option>
+                <input
+                  type="number"
+                  id="dailyPrice"
+                  formControlName="dailyPrice"
+                  class="form-control"
+                  placeholder="Günlük Ücret"
+                />
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="addCar()">
+          Araç Ekle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -23,6 +23,10 @@ import { CarFilterComponent } from './components/car/car-filter/car-filter.compo
 import { RentalDetailComponent } from './components/rental-detail/rental-detail.component';
 import { RentAddComponent } from './components/car/rent-add/rent-add.component';
 import { CarAddComponent } from './components/car/car-add/car-add.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { CarUpdateComponent } from './components/car/car-update/car-update.component';
+import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
+import { BrandUpdateComponent } from './components/brand/brand-update/brand-update.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,10 @@ import { CarAddComponent } from './components/car/car-add/car-add.component';
     RentalDetailComponent,
     RentAddComponent,
     CarAddComponent,
+    PaymentComponent,
+    CarUpdateComponent,
+    BrandAddComponent,
+    BrandUpdateComponent,
     
   ],
   imports: [

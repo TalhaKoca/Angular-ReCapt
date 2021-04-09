@@ -116,11 +116,63 @@
             <button
               routerLink="/cars/cardetail/{{ car.carId }}"
               type="button"
-              class="btn btn-dark w-100"
+              class="btn btn-secondary w-100"
             >
               <strong>Detay</strong>
             </button>
           </li>
+
+          <!-- <div>
+            <li class="list-group-item text-center">
+              <button routerLink="/cars/updatecar/{{ car.carId }}" type="button" class="btn btn-dark w-50">
+                <strong>Güncelle</strong>
+              </button>
+              |
+              <button routerLink="/brands/updatebrand/{{ car.brandId }}" type="button" class="btn btn-dark w-49">
+                <strong>Marka</strong>
+              </button>
+
+            </li>
+          </div> -->
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label
+              routerLink="/brands/updatebrand/{{ car.brandId }}"
+              class="btn btn-secondary active"
+            >
+              <input
+                type="radio"
+                name="options"
+                id="option1"
+                autocomplete="off"
+                checked
+              />
+              Araç
+            </label>
+            <label
+              routerLink="/brands/updatebrand/{{ car.brandId }}"
+              class="btn btn-secondary"
+            >
+              <input
+                type="radio"
+                name="options"
+                id="option2"
+                autocomplete="off"
+              />
+              Marka
+            </label>
+            <label
+              routerLink="/colors/updatecolor/{{ car.colorId }}"
+              class="btn btn-secondary"
+            >
+              <input
+                type="radio"
+                name="options"
+                id="option3"
+                autocomplete="off"
+              />
+              Renk
+            </label>
+          </div>
         </ul>
       </div>
     </div>
@@ -129,3 +181,4 @@
   Filtre Uygula
 </button> -->
 </div>
+<br />

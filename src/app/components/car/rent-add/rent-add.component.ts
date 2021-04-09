@@ -80,46 +80,12 @@ export class RentAddComponent implements OnInit {
         return false;
       } else {
         this.controlpoint += 1;
-        return this.add();
+        this.rentalService.setRentedCar(this.rental)
+        this.toastrService.success('İşlem  bir şekilde gerçekleştirildi. Ödeme Sayfasına yönlendiriliyorsunuz.Lütfen bekleyiniz... ');
+        this.router.navigate(["cardetails/payments"]);
+        return true;
       }
     });
     
-  }
-
-  add() {
-    if (this.controlpoint) {
-      let rentModel = Object.assign({}, this.addRentalForm.value);
-      console.log(rentModel)
-      console.log(this.addRentalForm.value)
-      this.rentalService.add(rentModel).subscribe(
-        (response) => {
-          this.controlpoint -= 1;
-          console.log(this.controlpoint)
-          this.toastrService.info(
-            response.message,
-            'İşlem başarılı bir şekilde gerçekleştirildi. Ödeme Sayfasına yönlendiriliyorsunuz.Lütfen bekleyiniz... '
-          );
-          return this.router.navigate(['/cars']);
-        },
-        (responseError) => {
-          console.log(responseError.error.ValidationErrors)
-          if (responseError.error.ValidationErrors.length > 0)
-            for (
-              let i = 0;
-              i < responseError.error.ValidationErrors.length;
-              i++
-            ) {
-              this.toastrService.error(
-                responseError.error.ValidationErrors[i].ErrorMessage,
-                'Doğrulama Hatası'
-              );
-            }
-        }
-      );
-    } else {
-      this.toastrService.error(
-        'Sistemde yaşanılan aksaklıktan dolayı özür dileriz.'
-      );
-    }
   }
 }

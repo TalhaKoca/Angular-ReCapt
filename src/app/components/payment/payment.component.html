@@ -1,0 +1,94 @@
+<div class="content">
+  <div class="col-md-8">
+    <div class="card" style="font-family: sans-serif">
+      <div class="card-header" style="background-color: rgb(17, 16, 16)">
+        <h5 class="title" style="color: floralwhite;">Ödeme Sayfası</h5>
+      </div>
+      <div class="card-body">
+        <div class="icons">
+            <img src="https://img.icons8.com/color/48/000000/visa.png" />
+            <img
+              src="https://img.icons8.com/color/48/000000/mastercard-logo.png"
+            />
+            <img src="https://img.icons8.com/color/48/000000/maestro.png" />
+          </div>
+        <form [formGroup]="addPaymentForm">
+          <div class="mb-3">
+            <label for="cardHolder">Kart Sahibi</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="cardHolder"
+                formControlName="cardHolder"
+                class="form-control"
+                placeholder="Kart Numarası"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="cardNumber">Kart Numarası</label>
+            <div class="form-group">
+              <input
+                type="text" maxlength="16"
+                id="cardNumber"
+                formControlName="cardNumber"
+                class="form-control"
+                placeholder="XXXX XXXX XXXX XXXX"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="expiryDate">Son Kullanma Tarihi</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="expiryDate"
+                formControlName="expiryDate"
+                class="form-control"
+                placeholder="XX/XX"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="securityNumber">Güvenlik Numarası</label>
+            <div class="form-group">
+              <input
+                type="text" maxlength="3"
+                id="securityNumber"
+                formControlName="securityNumber"
+                class="form-control"
+                placeholder="CVV"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="response">Kart Bilgilerimi Hatırla</label>
+              <div class="form-group">
+                <option value="response"></option>
+                <input
+                  type="text" maxlength="3"
+                  id="response"
+                  formControlName="response"
+                  class="form-control"
+                  placeholder="evet/hayır"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="add()"
+        >
+          Ödeme Yap
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

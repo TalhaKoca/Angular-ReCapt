@@ -1,0 +1,36 @@
+<div class="content">
+  <div class="col-md-8">
+    <div class="card" style="font-family: sans-serif">
+      <div class="card-header" style="background-color: rgb(17, 16, 16)">
+        <h5 class="title" style="color: floralwhite">
+          Araç Yeni Marka Giriş Ekranı
+        </h5>
+      </div>
+      <div class="card-body">
+        <form
+          autocomplete="off"
+          [formGroup]="addBrandForm"
+          (ngSubmit)="(addBrand)"
+        >
+          <div class="mb-3">
+            <label for="brandName">Marka</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="brandName"
+                formControlName="brandName"
+                class="form-control"
+                placeholder="Ör:Mercedes..."
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="addBrand()">
+          Marka Ekle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

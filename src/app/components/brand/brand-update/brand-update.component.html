@@ -1,0 +1,27 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card" style="font-family: sans-serif">
+      <div class="card-header" style="background-color: rgb(138, 74, 74)">
+        <h5 class="title">Marka Güncelleme</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="updateBrandForm">
+          <div class="form-floating mb-3">
+            <select class="form-select" id="brands" formControlName="brandName">
+              <option value="">Markalar</option>
+              <option *ngFor="let brand of brands" [value]="brand.brandName">
+                {{ brand.brandName }}
+              </option>
+            </select>
+            <label for="brands">Markalar</label>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="update()">
+          Güncelle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
