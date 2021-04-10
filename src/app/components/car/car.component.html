@@ -6,11 +6,28 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<div class="row m-2">
-  <li class="p-3 mb-2 bg-dark bg-gradient text-white" aria-current="true">
-    Araç Listesi
-  </li>
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 d-flex flex-column mx-auto">
+        <li class="p-3 mb-2 bg-dark bg-gradient text-white" aria-current="true">
+          Araç Listesi
+        </li>
+      </div>
+      <div class="col-md-2 d-flex flex-column mx-auto">
+        <label for="filterText" class="form-label"></label>
+      <input
+        type="text"
+        [(ngModel)]="filterText"
+        class="form-control"
+        id="filterText"
+        placeholder="Ara..."
+      />
+      </div>
+    </div>
 </div>
+
+
 <div class="row m-2">
   <div class="row m-2">
     <div class="col col-4">
@@ -62,18 +79,6 @@
       </button>
     </div>
   </div>
-
-  <div class="col-md-3 d-flex flex-column mx-auto">
-    <label for="filterText" class="form-label"></label>
-    <input
-      type="text"
-      [(ngModel)]="filterText"
-      class="form-control"
-      id="filterText"
-      placeholder="Ara..."
-    />
-  </div>
-
   <br />
 
   <div class="row" *ngIf="cars.length == 0">
@@ -136,7 +141,7 @@
           </div> -->
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label
-              routerLink="/brands/updatebrand/{{ car.brandId }}"
+              routerLink="/cars/updatecar/{{ car.carId }}"
               class="btn btn-secondary active"
             >
               <input
@@ -149,7 +154,7 @@
               Araç
             </label>
             <label
-              routerLink="/brands/updatebrand/{{ car.brandId }}"
+              routerLink="brands/updatebrand/{{ car.brandId }}"
               class="btn btn-secondary"
             >
               <input
@@ -161,7 +166,7 @@
               Marka
             </label>
             <label
-              routerLink="/colors/updatecolor/{{ car.colorId }}"
+              routerLink="colors/updatecolor/{{ car.colorId }}"
               class="btn btn-secondary"
             >
               <input

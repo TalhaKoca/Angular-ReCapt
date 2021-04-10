@@ -1,40 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Brand } from 'src/app/models/brand';
-import { BrandService } from 'src/app/services/brand.service';
+import { Color } from 'src/app/models/color';
+import { ColorService } from 'src/app/services/color.service';
 
 @Component({
-  selector: 'app-brand-add',
-  templateUrl: './brand-add.component.html',
-  styleUrls: ['./brand-add.component.css']
+  selector: 'app-color-add',
+  templateUrl: './color-add.component.html',
+  styleUrls: ['./color-add.component.css']
 })
-export class BrandAddComponent implements OnInit {
+export class ColorAddComponent implements OnInit {
 
-  brand:Brand;
-  addBrandForm:FormGroup;
+  color:Color;
+  addColorForm:FormGroup;
   constructor(
     private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-    private brandService:BrandService
+    private colorService:ColorService
   ) { }
 
   ngOnInit(): void {
-    this.createBrandAddForm();
+
+    this.createColorAddForm();
   }
 
-  createBrandAddForm(){
-    this.addBrandForm = this.formBuilder.group({
-      brandName : ["",Validators.required]
+
+  createColorAddForm(){
+    this.addColorForm = this.formBuilder.group({
+      colorName:["",Validators.required]
     })
   }
 
-  addBrand(){
-    if(this.addBrandForm.valid){
-      this.brand = Object.assign({},this.addBrandForm.value);
-      this.brandService.add(this.brand).subscribe(response=>{
-        this.addBrandForm.reset();
-        this.toastrService.success(response.message,'Girdi marka başarıyla eklendi.')
+  addColor(){
+    if(this.addColorForm.valid){
+      this.color = Object.assign({},this.addColorForm.value);
+      this.colorService.add(this.color).subscribe(response=>{
+        this.addColorForm.reset();
+        this.toastrService.success(response.message,'Girdi başarıyla eklendi')
       },responseError=>{
         if (responseError.error.ValidationErrors.length > 0)
             for (
@@ -52,5 +54,4 @@ export class BrandAddComponent implements OnInit {
       this.toastrService.warning('Form eksik bilgiler içeriyor.', 'Dikkat');
     }
   }
-
 }

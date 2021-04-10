@@ -1,0 +1,37 @@
+<div class="content">
+    <div class="col-md-8">
+      <div class="card" style="font-family: sans-serif">
+        <div class="card-header" style="background-color: rgb(17, 16, 16)">
+          <h5 class="title" style="color: floralwhite">
+            Araç Yeni Renk Giriş Ekranı
+          </h5>
+        </div>
+        <div class="card-body">
+          <form
+            autocomplete="off"
+            [formGroup]="addColorForm"
+            (ngSubmit)="(addColor)"
+          >
+            <div class="mb-3">
+              <label for="colorName">Renk</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="colorName"
+                  formControlName="colorName"
+                  class="form-control"
+                  placeholder="Ör:Siyah..."
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="addColor()">
+            Renk Ekle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

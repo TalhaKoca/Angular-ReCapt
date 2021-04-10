@@ -1,0 +1,31 @@
+<div class="content">
+    <div class="col-md-12">
+      <div class="card" style="font-family: sans-serif">
+        <div class="card-header" style="background-color: rgb(36, 33, 33)">
+          <thead>
+            <tr class="table-dark">
+              <th scope="col">Renk Güncelleme</th>
+            </tr>
+          </thead>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="updateColorForm">
+            <div class="form-floating mb-3">
+              <select class="form-select" id="colors" formControlName="colorName">
+                <option value="">Renkler</option>
+                <option *ngFor="let color of colors" [value]="color.colorName">
+                  {{ color.colorName }}
+                </option>
+              </select>
+              <label for="brands">Renkler</label>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="update()">
+            Güncelle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
