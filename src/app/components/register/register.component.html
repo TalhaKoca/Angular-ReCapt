@@ -1,0 +1,63 @@
+<body>
+  <div class="bg-img">
+    <form
+      [formGroup]="registerForm"
+      action="/action_page.php"
+      class="container"
+    >
+      <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Koltuktaki Yerinizi Alın...</h3>
+
+      <label for="firstName"><b>İsim:</b></label>
+      <div class="form-group">
+        <input
+          formControlName="firstName"
+          class="form-control"
+          id="firstName"
+          type="text"
+          placeholder="İsminizi giriniz.."
+          name="firstName"
+          required
+        />
+      </div>
+      <label for="lastName"><b>Soyisim</b></label>
+      <div class="form-group">
+        <input
+          formControlName="lastName"
+          class="form-control"
+          id="lastName"
+          type="text"
+          placeholder="Soyadınızı giriniz"
+          name="lastName"
+          required
+        />
+      </div>
+      <label for="email"><b>E-Posta</b></label>
+      <div class="form-group">
+        <input
+          formControlName="email"
+          class="form-control"
+          id="email"
+          type="text"
+          placeholder="name@example.com"
+          name="email"
+          required
+        />
+      </div>
+
+      <label for="password"><b>Parola</b></label>
+      <div class="form-group">
+        <input
+          formControlName="password"
+          class="form-control"
+          type="password"
+          id="password"
+          placeholder="Parolanızı giriniz..."
+          name="password"
+          required
+        />
+      </div>
+      <button (click)="register()" class="btn">Kayıt Ol</button>
+    </form>
+  </div>
+  <strong class="mt-5 mb-3 text-muted">&copy; 2017–2021</strong>
+</body>

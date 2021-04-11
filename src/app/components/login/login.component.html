@@ -1,0 +1,34 @@
+<body>
+  <div class="bg-img">
+    <form [formGroup]="loginForm" action="/action_page.php" class="container">
+      <h3>Hoşgeldiniz</h3>
+      <label for="email"><b>E-Posta</b></label>
+      <div class="form-group">
+        <input
+          [readonly]="setCurrentUserEmail()"
+          formControlName="email"
+          class="form-control"
+          id="email"
+          type="text"
+          placeholder="name@example.com"
+          name="email"
+          required
+        />
+      </div>
+      <label for="password"><b>Parola</b></label>
+      <div class="form-group">
+        <input
+          formControlName="password"
+          class="form-control"
+          type="password"
+          id="password"
+          placeholder="Parolanızı giriniz..."
+          name="password"
+          required
+        />
+      </div>
+      <button (click)="login()" class="btn">Giriş</button>
+    </form>
+  </div>
+  <strong class="mt-5 mb-3 text-muted">&copy; 2017–2021</strong>
+</body>

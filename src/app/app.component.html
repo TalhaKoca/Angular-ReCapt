@@ -1,28 +1,24 @@
-<!-- Welcome {{user}}
-{{car1.description}}
+<div class="container"><app-navi></app-navi><br /></div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
 
-<ul>
-  <li *ngFor="let car of cars">
-    {{car.description}}
-  </li>
-</ul> -->
-<div class="container">
-  <app-navi></app-navi><br>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-2 d-flex flex-column mx-auto">
-      <app-brand></app-brand>
-      <app-car-filter></app-car-filter>
-      <app-brand-update></app-brand-update>
-      <app-color-update></app-color-update>
-    </div>
-    <div class="col-md-10">
-      <router-outlet></router-outlet>
-    </div>
+
+
+
+
+
+<!-- <div class="row">
+  <div class="col-md-2 d-flex flex-column mx-auto">
+    <app-brand></app-brand>
+    <app-car-filter></app-car-filter>
+    <app-brand-update></app-brand-update>
+    <app-color-update></app-color-update>
   </div>
+  <div class="col-md-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>
 <div class="row">
-  <div class="col-md-4">
-  </div>
-</div>
-</div>
+  <div class="col-md-4"></div>
+</div> -->
