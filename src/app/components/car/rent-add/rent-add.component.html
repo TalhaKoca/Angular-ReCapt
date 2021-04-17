@@ -1,11 +1,11 @@
-<div class="content">
-  <div class="col-md-12">
+<div class="row">
+  <div class="col-md-6">
     <div class="card" style="font-family: sans-serif">
       <div class="card-header" style="background-color: rgb(138, 74, 74)">
         <h5 class="title">Araç Kiralama</h5>
       </div>
       <div class="card-body">
-        <form [formGroup]="addRentalForm" >
+        <form [formGroup]="addRentalForm">
           <div class="mb-3">
             <label for="carId">Araç Id</label>
             <div class="form-group">
@@ -60,9 +60,17 @@
         </form>
       </div>
       <div class="card-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="rentFirstStage()">Kirala</button>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="rentFirstStage()"
+        >
+          Kirala
+        </button>
       </div>
     </div>
   </div>
+  <div class="col-md-4">
+    <div class="img" style="background-color: rgb(52, 56, 52)"></div>
+  </div>
 </div>
-
